@@ -1,6 +1,7 @@
-package com.marcinmoskala.kotlinandroidviewbindings
+package com.marcinmoskala.kotlinandroidviewbindings.login
 
-import com.mvtest.marcinmoskala.mvtest.*
+import com.marcinmoskala.kotlinandroidviewbindings.applySchedulers
+import com.marcinmoskala.kotlinandroidviewbindings.smartSubscribe
 import rx.Subscription
 
 class LoginPresenter(val view: LoginView) {
@@ -8,6 +9,10 @@ class LoginPresenter(val view: LoginView) {
     val loginUseCase by lazy { LoginUseCase() }
     val validateLoginFieldsUseCase by lazy { ValidateLoginFieldsUseCase() }
     var subscriptions: List<Subscription> = emptyList()
+
+    fun onCreate() {
+        view.loginButtonClickedCallback = { attemptLogin() }
+    }
 
     fun onDestroy() {
         subscriptions.forEach { it.unsubscribe() }
@@ -20,8 +25,8 @@ class LoginPresenter(val view: LoginView) {
                     view.passwordErrorId = passwordErrorId
                     view.emailErrorId = emailErrorId
                     when {
-                        emailErrorId != null -> view.requestEmailFocus()
-                        passwordErrorId != null -> view.requestPasswordFocus()
+                        emailErrorId != null -> view.emailRequestFocus()
+                        passwordErrorId != null -> view.passwordRequestFocus()
                         else -> sendLoginRequest(email, password)
                     }
                 }

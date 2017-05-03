@@ -1,6 +1,5 @@
-package com.marcinmoskala.kotlinandroidviewbindings
+package com.marcinmoskala.kotlinandroidviewbindings.login
 
-import com.marcinmoskala.kotlinandroidviewbindings.LoginResponse
 import rx.Observable
 
 interface LoginRepository {

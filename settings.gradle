@@ -1,1 +1,1 @@
-include ':app', ':kotlinandroidviewbindingskae'
+include ':app', ':kotlinandroidviewbindings'

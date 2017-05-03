@@ -1,5 +1,6 @@
-package com.marcinmoskala.kotlinandroidviewbindings
+package com.marcinmoskala.kotlinandroidviewbindings.login
 
+import com.marcinmoskala.kotlinandroidviewbindings.R
 import rx.Observable
 
 class ValidateLoginFieldsUseCase {

@@ -1,6 +1,4 @@
-package com.marcinmoskala.kotlinandroidviewbindings
-
-import com.marcinmoskala.kotlinandroidviewbindings.LoginRepository
+package com.marcinmoskala.kotlinandroidviewbindings.login
 
 class LoginUseCase {
 

@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/KotlinAndroidViewBindings.iml" filepath="$PROJECT_DIR$/KotlinAndroidViewBindings.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/kotlinandroidviewbindingskae/kotlinandroidviewbindingskae.iml" filepath="$PROJECT_DIR$/kotlinandroidviewbindingskae/kotlinandroidviewbindingskae.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kotlinandroidviewbindings/kotlinandroidviewbindings.iml" filepath="$PROJECT_DIR$/kotlinandroidviewbindings/kotlinandroidviewbindings.iml" />
     </modules>
   </component>
 </project>
