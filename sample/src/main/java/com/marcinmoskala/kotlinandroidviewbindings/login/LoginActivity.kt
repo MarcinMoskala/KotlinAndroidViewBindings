@@ -2,9 +2,7 @@ package com.marcinmoskala.kotlinandroidviewbindings.login
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.marcinmoskala.kotlinandroidviewbindings.R
-import com.marcinmoskala.kotlinandroidviewbindings.toast
-import com.marcinmoskala.kotlinandroidviewbindings_kae.*
+import com.marcinmoskala.kotlinandroidviewbindings.*
 
 class LoginActivity : AppCompatActivity(), LoginView {
 
@@ -18,7 +16,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     override val passwordRequestFocus by bindToRequestFocus(R.id.passwordView)
     override var passwordErrorId by bindToErrorId(R.id.passwordView)
 
-    override var loginButtonClickedCallback by bindToClick(R.id.passwordView)
+    override var loginButtonClickedCallback by bindToClick(R.id.loginButton)
 
     val presenter by lazy { LoginPresenter(this) }
 

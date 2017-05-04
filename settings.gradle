@@ -1,1 +1,1 @@
-include ':app', ':kotlinandroidviewbindings'
+include ':sample', ':kotlinandroidviewbindings'

@@ -21,15 +21,18 @@ class LoginPresenter(val view: LoginView) {
     fun attemptLogin() {
         val (email, password) = view.email to view.password
         subscriptions += validateLoginFieldsUseCase.validateLogin(email, password)
-                .smartSubscribe { (emailErrorId, passwordErrorId) ->
-                    view.passwordErrorId = passwordErrorId
-                    view.emailErrorId = emailErrorId
-                    when {
-                        emailErrorId != null -> view.emailRequestFocus()
-                        passwordErrorId != null -> view.passwordRequestFocus()
-                        else -> sendLoginRequest(email, password)
-                    }
-                }
+                .smartSubscribe(
+                        onSuccess = { (emailErrorId, passwordErrorId) ->
+                            view.passwordErrorId = passwordErrorId
+                            view.emailErrorId = emailErrorId
+                            when {
+                                emailErrorId != null -> view.emailRequestFocus()
+                                passwordErrorId != null -> view.passwordRequestFocus()
+                                else -> sendLoginRequest(email, password)
+                            }
+                        },
+                        onError = view::informAboutError
+                )
     }
 
     private fun sendLoginRequest(email: String, password: String) {
