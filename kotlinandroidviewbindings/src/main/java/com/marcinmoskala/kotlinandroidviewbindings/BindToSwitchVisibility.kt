@@ -22,7 +22,7 @@ fun bindToLoading(
         lazy(restViewHolderProvider)
 )
 
-fun bindToLoading(
+private fun bindToLoading(
         progressLazyViewProvider: Lazy<View>,
         restViewHolderLazyProvider: Lazy<View?>
 ): ReadWriteProperty<Any?, Boolean> = LoadingBinding(

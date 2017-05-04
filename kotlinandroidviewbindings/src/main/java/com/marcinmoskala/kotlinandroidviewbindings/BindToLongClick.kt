@@ -12,7 +12,7 @@ fun Activity.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> 
 fun bindToLongClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
         = bindToLongClick(lazy(viewProvider))
 
-fun bindToLongClick(lazyViewProvider: Lazy<View>): ReadWriteProperty<Any?, () -> Unit>
+private fun bindToLongClick(lazyViewProvider: Lazy<View>): ReadWriteProperty<Any?, () -> Unit>
         = OnLongClickBinding(lazyViewProvider)
 
 private class OnLongClickBinding(viewProvider: Lazy<View>) : ReadWriteProperty<Any?, () -> Unit> {

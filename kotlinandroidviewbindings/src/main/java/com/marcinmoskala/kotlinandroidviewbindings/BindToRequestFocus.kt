@@ -2,7 +2,6 @@ package com.marcinmoskala.kotlinandroidviewbindings
 
 import android.app.Activity
 import android.support.annotation.IdRes
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
@@ -13,7 +12,7 @@ fun Activity.bindToRequestFocus(@IdRes editViewId: Int): ReadOnlyProperty<Any?, 
 fun bindToRequestFocus(viewProvider: () -> View): ReadOnlyProperty<Any?, () -> Unit>
         = bindToRequestFocus(lazy(viewProvider))
 
-fun bindToRequestFocus(lazyViewProvider: Lazy<View>): ReadOnlyProperty<Any?, () -> Unit>
+private fun bindToRequestFocus(lazyViewProvider: Lazy<View>): ReadOnlyProperty<Any?, () -> Unit>
         = RequestFocusBinding(lazyViewProvider)
 
 private class RequestFocusBinding(viewProvider: Lazy<View>) : ReadOnlyProperty<Any?, () -> Unit> {

@@ -12,7 +12,7 @@ fun Activity.bindToClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit
 fun bindToClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
         = bindToClick(lazy(viewProvider))
 
-fun bindToClick(lazyViewProvider: Lazy<View>): ReadWriteProperty<Any?, () -> Unit>
+private fun bindToClick(lazyViewProvider: Lazy<View>): ReadWriteProperty<Any?, () -> Unit>
         = OnClickBinding(lazyViewProvider)
 
 private class OnClickBinding(viewProvider: Lazy<View>) : ReadWriteProperty<Any?, () -> Unit> {

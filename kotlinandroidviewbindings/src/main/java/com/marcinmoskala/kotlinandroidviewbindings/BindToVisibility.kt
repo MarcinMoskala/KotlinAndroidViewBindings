@@ -12,7 +12,7 @@ fun Activity.bindToVisibility(@IdRes editTextId: Int): ReadWriteProperty<Any?, B
 fun bindToVisibility(viewProvider: () -> View): ReadWriteProperty<Any?, Boolean>
         = bindToVisibility(lazy(viewProvider))
 
-fun bindToVisibility(lazyViewProvider: Lazy<View>): ReadWriteProperty<Any?, Boolean>
+private fun bindToVisibility(lazyViewProvider: Lazy<View>): ReadWriteProperty<Any?, Boolean>
         = ViewVisibilityBinding(lazyViewProvider)
 
 private class ViewVisibilityBinding(viewProvider: Lazy<View>) : ReadWriteProperty<Any?, Boolean> {

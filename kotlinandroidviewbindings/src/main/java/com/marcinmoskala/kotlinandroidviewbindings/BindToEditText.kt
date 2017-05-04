@@ -12,7 +12,7 @@ fun Activity.bindToEditText(@IdRes editTextId: Int): ReadWriteProperty<Any?, Str
 fun bindToEditText(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
         = bindToEditText(lazy(viewProvider))
 
-fun bindToEditText(lazyViewProvider: Lazy<EditText>): ReadWriteProperty<Any?, String>
+private fun bindToEditText(lazyViewProvider: Lazy<EditText>): ReadWriteProperty<Any?, String>
         = EditTextViewTextBinding(lazyViewProvider)
 
 private class EditTextViewTextBinding(lazyViewProvider: Lazy<EditText>) : ReadWriteProperty<Any?, String> {

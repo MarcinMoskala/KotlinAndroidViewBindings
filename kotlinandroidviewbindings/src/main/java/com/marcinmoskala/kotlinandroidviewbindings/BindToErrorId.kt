@@ -12,7 +12,7 @@ fun Activity.bindToErrorId(@IdRes editTextId: Int): ReadWriteProperty<Any?, Int?
 fun bindToErrorId(viewProvider: () -> EditText): ReadWriteProperty<Any?, Int?>
         = bindToErrorId(lazy(viewProvider))
 
-fun bindToErrorId(lazyViewProvider: Lazy<EditText>): ReadWriteProperty<Any?, Int?>
+private fun bindToErrorId(lazyViewProvider: Lazy<EditText>): ReadWriteProperty<Any?, Int?>
         = EditTextViewErrorIdBinding(lazyViewProvider)
 
 private class EditTextViewErrorIdBinding(lazyViewProvider: Lazy<EditText>) : ReadWriteProperty<Any?, Int?> {
