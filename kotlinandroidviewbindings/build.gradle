@@ -1,0 +1,24 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.marcinmoskala.kotlinandroidviewbindings'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 25
+        versionCode 1
+        versionName "0.1"
+    }
+}
+
+dependencies {
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.0'
+    compile 'com.android.support:support-annotations:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+}
