@@ -9,11 +9,8 @@ import kotlin.reflect.KProperty
 fun Activity.bindToTextView(@IdRes textViewId: Int): ReadWriteProperty<Any?, String>
         = bindToTextView { findViewById(textViewId) as TextView }
 
-fun bindToTextView(viewProvider: () -> TextView): ReadWriteProperty<Any?, String>
-        = bindToTextView(lazy(viewProvider))
-
-private fun bindToTextView(lazyViewProvider: Lazy<TextView>): ReadWriteProperty<Any?, String>
-        = TextViewTextBinding(lazyViewProvider)
+private fun bindToTextView(viewProvider: () -> TextView): ReadWriteProperty<Any?, String>
+        = TextViewTextBinding(lazy(viewProvider))
 
 private class TextViewTextBinding(lazyViewProvider: Lazy<TextView>) : ReadWriteProperty<Any?, String> {
 

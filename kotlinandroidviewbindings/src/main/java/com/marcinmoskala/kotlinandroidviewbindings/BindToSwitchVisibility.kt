@@ -14,20 +14,12 @@ fun Activity.bindToLoading(
         restViewHolderProvider = { restViewHolderId?.let { findViewById(it) } }
 )
 
-fun bindToLoading(
+private fun bindToLoading(
         progressViewProvider: () -> View,
         restViewHolderProvider: () -> View?
-): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+): ReadWriteProperty<Any?, Boolean> = LoadingBinding(
         lazy(progressViewProvider),
         lazy(restViewHolderProvider)
-)
-
-private fun bindToLoading(
-        progressLazyViewProvider: Lazy<View>,
-        restViewHolderLazyProvider: Lazy<View?>
-): ReadWriteProperty<Any?, Boolean> = LoadingBinding(
-        progressLazyViewProvider,
-        restViewHolderLazyProvider
 )
 
 private class LoadingBinding(

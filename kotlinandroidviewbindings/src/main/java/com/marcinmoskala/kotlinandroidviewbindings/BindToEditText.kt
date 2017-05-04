@@ -9,11 +9,8 @@ import kotlin.reflect.KProperty
 fun Activity.bindToEditText(@IdRes editTextId: Int): ReadWriteProperty<Any?, String>
         = bindToEditText { findViewById(editTextId) as EditText }
 
-fun bindToEditText(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
-        = bindToEditText(lazy(viewProvider))
-
-private fun bindToEditText(lazyViewProvider: Lazy<EditText>): ReadWriteProperty<Any?, String>
-        = EditTextViewTextBinding(lazyViewProvider)
+private fun bindToEditText(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
+        = EditTextViewTextBinding(lazy(viewProvider))
 
 private class EditTextViewTextBinding(lazyViewProvider: Lazy<EditText>) : ReadWriteProperty<Any?, String> {
 

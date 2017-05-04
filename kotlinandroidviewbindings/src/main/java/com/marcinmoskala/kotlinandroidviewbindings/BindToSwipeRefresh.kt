@@ -3,18 +3,14 @@ package com.marcinmoskala.kotlinandroidviewbindings
 import android.app.Activity
 import android.support.annotation.IdRes
 import android.support.v4.widget.SwipeRefreshLayout
-import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-fun Activity.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadOnlyProperty<Any?, Boolean>
+fun Activity.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadWriteProperty<Any?, Boolean>
         = bindToSwipeRefresh { findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
 
-fun bindToSwipeRefresh(viewProvider: () -> SwipeRefreshLayout): ReadOnlyProperty<Any?, Boolean>
-        = bindToSwipeRefresh(lazy(viewProvider))
-
-private fun bindToSwipeRefresh(lazyViewProvider: Lazy<SwipeRefreshLayout>): ReadOnlyProperty<Any?, Boolean>
-        = bindToSwipeRefresh(lazyViewProvider)
+private fun bindToSwipeRefresh(viewProvider: () -> SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
+        = SwipeRefreshBinding(lazy(viewProvider))
 
 private class SwipeRefreshBinding(viewProvider: Lazy<SwipeRefreshLayout>) : ReadWriteProperty<Any?, Boolean> {
 
