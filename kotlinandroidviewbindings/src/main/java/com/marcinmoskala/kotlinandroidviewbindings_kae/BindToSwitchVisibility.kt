@@ -2,20 +2,11 @@ package com.marcinmoskala.kotlinandroidviewbindings_kae
 
 import android.app.Activity
 import android.support.annotation.IdRes
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToLoading(
-        @IdRes progressViewId: Int,
-        @IdRes restViewHolderId: Int?
-): ReadWriteProperty<Any?, Boolean> = bindToLoading(
-        progressViewProvider = { findViewById(progressViewId) },
-        restViewHolderProvider = { restViewHolderId?.let { findViewById(it) } }
-)
-
-fun AppCompatActivity.bindToLoading(
         @IdRes progressViewId: Int,
         @IdRes restViewHolderId: Int?
 ): ReadWriteProperty<Any?, Boolean> = bindToLoading(

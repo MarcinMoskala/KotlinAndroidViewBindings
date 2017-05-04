@@ -2,15 +2,11 @@ package com.marcinmoskala.kotlinandroidviewbindings_kae
 
 import android.app.Activity
 import android.support.annotation.IdRes
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
-        = bindToClick { findViewById(viewId) }
-
-fun AppCompatActivity.bindToClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
         = bindToClick { findViewById(viewId) }
 
 fun bindToClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
