@@ -6,7 +6,7 @@ Library providing property Kotlin bindings to Android view elements.
 
 Library allows to bind properties of basic types (String, Int, functional) to view element properties. Example:
 
-```
+```kotlin
 var email by bindToTextView(R.id.emailView)
 val emailRequestFocus by bindToRequestFocus(R.id.emailView)
 var emailErrorId by bindToErrorId(R.id.emailView)
@@ -15,7 +15,7 @@ var emailErrorId by bindToErrorId(R.id.emailView)
 This allows to make clear and simple MVP. Example:
 
 LoginView.kt
-```
+```kotlin
 interface LoginView {
     var progressVisible: Boolean
     var email: String
@@ -31,7 +31,7 @@ interface LoginView {
 ```
 
 LoginActivity.kt
-```
+```kotlin
 class LoginActivity : AppCompatActivity(), LoginView {
     
     override var progressVisible by bindToLoading(R.id.progressView, R.id.loginFormView)
@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
 ```
 
 Presenter.kt
-```
+```kotlin
 class LoginPresenter(val view: LoginView) {
 
     fun onCreate() {
