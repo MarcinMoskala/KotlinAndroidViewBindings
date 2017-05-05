@@ -6,9 +6,9 @@ import android.view.View
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-fun Activity.bindToLoading(
+@JvmOverloads fun Activity.bindToLoading(
         @IdRes progressViewId: Int,
-        @IdRes restViewHolderId: Int?
+        @IdRes restViewHolderId: Int? = null
 ): ReadWriteProperty<Any?, Boolean> = bindToLoading(
         progressViewProvider = { findViewById(progressViewId) },
         restViewHolderProvider = { restViewHolderId?.let { findViewById(it) } }
