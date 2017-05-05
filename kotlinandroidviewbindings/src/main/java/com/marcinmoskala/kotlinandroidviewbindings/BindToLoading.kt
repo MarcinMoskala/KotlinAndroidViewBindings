@@ -28,7 +28,7 @@ private class LoadingBinding(
 ) : ReadWriteProperty<Any?, Boolean> {
 
     val progressView by progressLazyViewProvider
-    val visibleAtStartView by restViewHolderLazyProvider
+    val restOfView by restViewHolderLazyProvider
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): Boolean {
         return progressView.visibility == View.VISIBLE
@@ -36,6 +36,6 @@ private class LoadingBinding(
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Boolean) {
         progressView.visibility = if(value) View.VISIBLE else View.GONE
-        visibleAtStartView?.visibility = if(!value) View.GONE else View.VISIBLE
+        restOfView?.visibility = if(!value) View.GONE else View.VISIBLE
     }
 }
