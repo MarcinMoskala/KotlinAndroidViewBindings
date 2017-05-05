@@ -36,6 +36,6 @@ private class LoadingBinding(
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Boolean) {
         progressView.visibility = if(value) View.VISIBLE else View.GONE
-        restOfView?.visibility = if(!value) View.GONE else View.VISIBLE
+        restOfView?.visibility = if(value) View.GONE else View.VISIBLE
     }
 }
