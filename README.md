@@ -7,9 +7,9 @@ Library providing property Kotlin bindings to Android view elements.
 Library allows to bind properties of basic types (String, Int, functional) to view element properties. Example:
 
 ```kotlin
-var email by bindToTextView(R.id.emailView)
-val emailRequestFocus by bindToRequestFocus(R.id.emailView)
-var emailErrorId by bindToErrorId(R.id.emailView)
+var email: String by bindToTextView(R.id.emailView)
+val emailRequestFocus: ()->Unit by bindToRequestFocus(R.id.emailView)
+var emailErrorId: Int? by bindToErrorId(R.id.emailView)
 ```
 
 This allows to make clear and simple MVP. Example:
