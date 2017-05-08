@@ -6,17 +6,22 @@ import android.view.View
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-@JvmOverloads fun Activity.bindToLoading(
+fun Activity.bindToLoading(
         @IdRes progressViewId: Int,
-        @IdRes restViewHolderId: Int? = null
+        @IdRes restViewHolderId: Int
 ): ReadWriteProperty<Any?, Boolean> = bindToLoading(
         progressViewProvider = { findViewById(progressViewId) },
-        restViewHolderProvider = { restViewHolderId?.let { findViewById(it) } }
+        restViewHolderProvider = { findViewById(restViewHolderId) }
+)
+
+fun Pair<View, View>.bindToLoading(): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+        progressViewProvider = { first },
+        restViewHolderProvider = { second }
 )
 
 private fun bindToLoading(
         progressViewProvider: () -> View,
-        restViewHolderProvider: () -> View?
+        restViewHolderProvider: () -> View
 ): ReadWriteProperty<Any?, Boolean> = LoadingBinding(
         lazy(progressViewProvider),
         lazy(restViewHolderProvider)
@@ -24,7 +29,7 @@ private fun bindToLoading(
 
 private class LoadingBinding(
         progressLazyViewProvider: Lazy<View>,
-        restViewHolderLazyProvider: Lazy<View?>
+        restViewHolderLazyProvider: Lazy<View>
 ) : ReadWriteProperty<Any?, Boolean> {
 
     val progressView by progressLazyViewProvider

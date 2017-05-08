@@ -9,6 +9,9 @@ import kotlin.reflect.KProperty
 fun Activity.bindToVisibility(@IdRes editTextId: Int): ReadWriteProperty<Any?, Boolean>
         = bindToVisibility { findViewById(editTextId) }
 
+fun View.bindToVisibility(): ReadWriteProperty<Any?, Boolean>
+        = bindToVisibility { this }
+
 private fun bindToVisibility(viewProvider: () -> View): ReadWriteProperty<Any?, Boolean>
         = ViewVisibilityBinding(lazy(viewProvider))
 

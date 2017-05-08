@@ -9,6 +9,9 @@ import kotlin.reflect.KProperty
 fun Activity.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
         = bindToLongClick { findViewById(viewId) }
 
+fun View.bindToLongClick(): ReadWriteProperty<Any?, () -> Unit>
+        = bindToLongClick { this }
+
 private fun bindToLongClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
         = OnLongClickBinding(lazy(viewProvider))
 

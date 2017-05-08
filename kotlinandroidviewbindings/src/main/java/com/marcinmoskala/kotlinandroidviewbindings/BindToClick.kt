@@ -9,6 +9,9 @@ import kotlin.reflect.KProperty
 fun Activity.bindToClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
         = bindToClick { findViewById(viewId) }
 
+fun View.bindToClick(): ReadWriteProperty<Any?, () -> Unit>
+        = bindToClick { this }
+
 private fun bindToClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
         = OnClickBinding(lazy(viewProvider))
 

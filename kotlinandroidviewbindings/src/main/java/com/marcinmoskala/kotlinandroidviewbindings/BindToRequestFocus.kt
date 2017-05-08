@@ -9,7 +9,10 @@ import kotlin.reflect.KProperty
 fun Activity.bindToRequestFocus(@IdRes editViewId: Int): ReadOnlyProperty<Any?, () -> Unit>
         = bindToRequestFocus { findViewById(editViewId) }
 
-private fun bindToRequestFocus(viewProvider: () -> View): ReadOnlyProperty<Any?, () -> Unit>
+fun View.bindToRequestFocus(): ReadOnlyProperty<Any?, () -> Unit>
+        = bindToRequestFocus { this }
+
+fun bindToRequestFocus(viewProvider: () -> View): ReadOnlyProperty<Any?, () -> Unit>
         = RequestFocusBinding(lazy(viewProvider))
 
 private class RequestFocusBinding(viewProvider: Lazy<View>) : ReadOnlyProperty<Any?, () -> Unit> {
