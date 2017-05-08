@@ -13,17 +13,17 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class BindToTextIdTests {
 
-    val context: Context
-        get() = InstrumentationRegistry.getTargetContext()
+    val context: Context get() = InstrumentationRegistry.getTargetContext()
+
+    val text1id get() = android.R.string.copy
+    val text1 get() = context.getText(android.R.string.copy)
+    val text2id get() = android.R.string.cancel
+    val text2 get() = context.getText(android.R.string.cancel)
 
     @Test
     fun buttonBindIdToText() {
         val button = Button(context)
         var buttonTextId by button.bindToTextId()
-        val text1id = android.R.string.copy
-        val text1 = context.getText(android.R.string.copy)
-        val text2id = android.R.string.cancel
-        val text2 = context.getText(android.R.string.cancel)
         buttonTextId = text1id
         assertEquals(text1id, buttonTextId)
         assertEquals(text1, button.text.toString())
@@ -35,32 +35,24 @@ class BindToTextIdTests {
     @Test
     fun textViewBindIdToText() {
         val textView = TextView(context)
-        var buttonTextId by textView.bindToTextId()
-        val text1id = android.R.string.copy
-        val text1 = context.getText(android.R.string.copy)
-        val text2id = android.R.string.cancel
-        val text2 = context.getText(android.R.string.cancel)
-        buttonTextId = text1id
-        assertEquals(text1id, buttonTextId)
+        var textViewTextId by textView.bindToTextId()
+        textViewTextId = text1id
+        assertEquals(text1id, textViewTextId)
         assertEquals(text1, textView.text.toString())
-        buttonTextId = text2id
-        assertEquals(text2id, buttonTextId)
+        textViewTextId = text2id
+        assertEquals(text2id, textViewTextId)
         assertEquals(text2, textView.text.toString())
     }
 
     @Test
     fun editTextBindIdToText() {
-        val textView = EditText(context)
-        var buttonTextId by textView.bindToTextId()
-        val text1id = android.R.string.copy
-        val text1 = context.getText(android.R.string.copy)
-        val text2id = android.R.string.cancel
-        val text2 = context.getText(android.R.string.cancel)
-        buttonTextId = text1id
-        assertEquals(text1id, buttonTextId)
-        assertEquals(text1, textView.text.toString())
-        buttonTextId = text2id
-        assertEquals(text2id, buttonTextId)
-        assertEquals(text2, textView.text.toString())
+        val editText = EditText(context)
+        var editTextTextId by editText.bindToTextId()
+        editTextTextId = text1id
+        assertEquals(text1id, editTextTextId)
+        assertEquals(text1, editText.text.toString())
+        editTextTextId = text2id
+        assertEquals(text2id, editTextTextId)
+        assertEquals(text2, editText.text.toString())
     }
 }
