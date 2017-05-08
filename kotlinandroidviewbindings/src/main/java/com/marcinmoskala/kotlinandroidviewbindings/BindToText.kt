@@ -12,7 +12,7 @@ fun Activity.bindToText(@IdRes textViewId: Int): ReadWriteProperty<Any?, String>
 fun TextView.bindToText(): ReadWriteProperty<Any?, String>
         = bindToText { this }
 
-fun bindToText(viewProvider: () -> TextView): ReadWriteProperty<Any?, String>
+private fun bindToText(viewProvider: () -> TextView): ReadWriteProperty<Any?, String>
         = TextBinding(lazy(viewProvider))
 
 private class TextBinding(lazyViewProvider: Lazy<TextView>) : ReadWriteProperty<Any?, String> {

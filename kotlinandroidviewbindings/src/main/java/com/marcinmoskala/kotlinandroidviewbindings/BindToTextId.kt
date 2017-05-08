@@ -18,14 +18,15 @@ private fun bindToTextId(viewProvider: () -> TextView): ReadWriteProperty<Any?, 
 private class TextIdBinding(lazyViewProvider: Lazy<TextView>) : ReadWriteProperty<Any?, Int?> {
 
     val view by lazyViewProvider
-    val textId: Int? = null
+    var textId: Int? = null
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): Int? {
         return textId
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Int?) {
-        textId ?: return
-        view.setText(textId)
+        value ?: return
+        textId = value
+        view.setText(value)
     }
 }

@@ -9,22 +9,25 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class BindToTextTests {
+class BindToTextIdTests {
 
     val context: Context
         get() = InstrumentationRegistry.getTargetContext()
 
     @Test
-    fun buttonBindToText() {
+    fun buttonBindIdToText() {
         val button = Button(context)
-        var buttonText by bindToText { button }
-        val text1 = "A"
-        val text2 = "B"
-        buttonText = text1
-        assertEquals(text1, buttonText)
+        var buttonTextId by button.bindToTextId()
+        val text1id = android.R.string.copy
+        val text1 = context.getText(android.R.string.copy)
+        val text2id = android.R.string.cancel
+        val text2 = context.getText(android.R.string.cancel)
+        buttonTextId = text1id
+        assertEquals(text1id, buttonTextId)
         assertEquals(text1, button.text.toString())
-        buttonText = text2
-        assertEquals(text2, buttonText)
+        buttonTextId = text2id
+        assertEquals(text2id
+                , buttonTextId)
         assertEquals(text2, button.text.toString())
     }
 }
