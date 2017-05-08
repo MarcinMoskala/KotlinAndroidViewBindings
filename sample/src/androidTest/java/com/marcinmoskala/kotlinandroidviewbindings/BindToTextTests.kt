@@ -14,12 +14,13 @@ class BindToTextTests {
     val context: Context
         get() = InstrumentationRegistry.getTargetContext()
 
+    val text1 get() = "A"
+    val text2 get() = "B"
+
     @Test
     fun buttonBindToText() {
         val button = Button(context)
         var buttonText by button.bindToText()
-        val text1 = "A"
-        val text2 = "B"
         buttonText = text1
         assertEquals(text1, buttonText)
         assertEquals(text1, button.text.toString())
