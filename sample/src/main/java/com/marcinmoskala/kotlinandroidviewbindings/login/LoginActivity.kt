@@ -8,11 +8,11 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     override var progressVisible by bindToLoading(R.id.progressView, R.id.loginFormView)
 
-    override var email by bindToTextView(R.id.emailView)
+    override var email by bindToText(R.id.emailView)
     override val emailRequestFocus by bindToRequestFocus(R.id.emailView)
     override var emailErrorId by bindToErrorId(R.id.emailView)
 
-    override var password by bindToTextView(R.id.passwordView)
+    override var password by bindToText(R.id.passwordView)
     override val passwordRequestFocus by bindToRequestFocus(R.id.passwordView)
     override var passwordErrorId by bindToErrorId(R.id.passwordView)
 

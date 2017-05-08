@@ -6,10 +6,10 @@ import android.widget.TextView
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-fun Activity.bindToTextView(@IdRes textViewId: Int): ReadWriteProperty<Any?, String>
-        = bindToTextView { findViewById(textViewId) as TextView }
+fun Activity.bindToText(@IdRes textViewId: Int): ReadWriteProperty<Any?, String>
+        = bindToText { findViewById(textViewId) as TextView }
 
-private fun bindToTextView(viewProvider: () -> TextView): ReadWriteProperty<Any?, String>
+private fun bindToText(viewProvider: () -> TextView): ReadWriteProperty<Any?, String>
         = TextViewTextBinding(lazy(viewProvider))
 
 private class TextViewTextBinding(lazyViewProvider: Lazy<TextView>) : ReadWriteProperty<Any?, String> {
