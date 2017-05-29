@@ -12,6 +12,8 @@ class LoginPresenter(val view: LoginView) {
 
     fun onCreate() {
         view.loginButtonClickedCallback = { attemptLogin() }
+        view.onEmaiEnterPressed = { view.passwordRequestFocus }
+        view.onPasswordEnterPressed = { attemptLogin() }
     }
 
     fun onDestroy() {
