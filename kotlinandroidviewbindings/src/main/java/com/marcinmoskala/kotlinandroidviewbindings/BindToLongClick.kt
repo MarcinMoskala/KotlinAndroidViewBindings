@@ -1,12 +1,23 @@
 package com.marcinmoskala.kotlinandroidviewbindings
 
 import android.app.Activity
+import android.app.Fragment
+import android.os.Build
 import android.support.annotation.IdRes
+import android.support.annotation.RequiresApi
 import android.view.View
+import android.widget.FrameLayout
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
+        = bindToLongClick { findViewById(viewId) }
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
+        = bindToLongClick { view.findViewById(viewId) }
+
+fun FrameLayout.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
         = bindToLongClick { findViewById(viewId) }
 
 fun View.bindToLongClick(): ReadWriteProperty<Any?, () -> Unit>

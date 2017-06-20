@@ -1,12 +1,23 @@
 package com.marcinmoskala.kotlinandroidviewbindings
 
 import android.app.Activity
+import android.app.Fragment
+import android.os.Build
 import android.support.annotation.IdRes
+import android.support.annotation.RequiresApi
 import android.support.v4.widget.SwipeRefreshLayout
+import android.widget.FrameLayout
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadWriteProperty<Any?, Boolean>
+        = bindToSwipeRefresh { findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadWriteProperty<Any?, Boolean>
+        = bindToSwipeRefresh { view.findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
+
+fun FrameLayout.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadWriteProperty<Any?, Boolean>
         = bindToSwipeRefresh { findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
 
 fun SwipeRefreshLayout.bindToSwipeRefresh(): ReadWriteProperty<Any?, Boolean>

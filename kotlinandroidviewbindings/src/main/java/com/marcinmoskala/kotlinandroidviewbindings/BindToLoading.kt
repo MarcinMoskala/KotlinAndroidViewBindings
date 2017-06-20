@@ -1,12 +1,34 @@
 package com.marcinmoskala.kotlinandroidviewbindings
 
 import android.app.Activity
+import android.app.Fragment
+import android.os.Build
 import android.support.annotation.IdRes
+import android.support.annotation.RequiresApi
 import android.view.View
+import android.widget.EditText
+import android.widget.FrameLayout
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToLoading(
+        @IdRes progressViewId: Int,
+        @IdRes restViewHolderId: Int
+): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+        progressViewProvider = { findViewById(progressViewId) },
+        restViewHolderProvider = { findViewById(restViewHolderId) }
+)
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToLoading(
+        @IdRes progressViewId: Int,
+        @IdRes restViewHolderId: Int
+): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+        progressViewProvider = { view.findViewById(progressViewId) },
+        restViewHolderProvider = { view.findViewById(restViewHolderId) }
+)
+
+fun FrameLayout.bindToLoading(
         @IdRes progressViewId: Int,
         @IdRes restViewHolderId: Int
 ): ReadWriteProperty<Any?, Boolean> = bindToLoading(

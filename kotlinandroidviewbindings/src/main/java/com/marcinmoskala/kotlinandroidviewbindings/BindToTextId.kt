@@ -1,12 +1,23 @@
 package com.marcinmoskala.kotlinandroidviewbindings
 
 import android.app.Activity
+import android.app.Fragment
+import android.os.Build
 import android.support.annotation.IdRes
+import android.support.annotation.RequiresApi
+import android.widget.FrameLayout
 import android.widget.TextView
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToTextId(@IdRes textViewId: Int): ReadWriteProperty<Any?, Int?>
+        = bindToTextId { findViewById(textViewId) as TextView }
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToTextId(@IdRes textViewId: Int): ReadWriteProperty<Any?, Int?>
+        = bindToTextId { view.findViewById(textViewId) as TextView }
+
+fun FrameLayout.bindToTextId(@IdRes textViewId: Int): ReadWriteProperty<Any?, Int?>
         = bindToTextId { findViewById(textViewId) as TextView }
 
 fun TextView.bindToTextId(): ReadWriteProperty<Any?, Int?>

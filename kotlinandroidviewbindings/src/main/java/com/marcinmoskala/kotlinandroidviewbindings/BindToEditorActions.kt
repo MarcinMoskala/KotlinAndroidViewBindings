@@ -1,14 +1,25 @@
 package com.marcinmoskala.kotlinandroidviewbindings
 
 import android.app.Activity
+import android.app.Fragment
+import android.os.Build
 import android.support.annotation.IdRes
+import android.support.annotation.RequiresApi
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import android.widget.FrameLayout
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToEditorActions(@IdRes editTextId: Int, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
         = bindToEditorActions(predicate, { findViewById(editTextId) as EditText })
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToEditorActions(@IdRes viewId: Int, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
+        = bindToEditorActions(predicate, { view.findViewById(viewId) as EditText })
+
+fun FrameLayout.bindToEditorActions(@IdRes viewId: Int, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
+        = bindToEditorActions(predicate, { findViewById(viewId) as EditText })
 
 fun EditText.bindToEditorActions(predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
         = bindToEditorActions(predicate) { this }
