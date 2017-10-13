@@ -1,6 +1,6 @@
 # KotlinAndroidViewBindings
 
-Library providing property Kotlin bindings to Android view elements.
+Bindings for properties with Kotlin types (Boolean, String) to layout traits (visibility, text).
 
 [![](https://jitpack.io/v/MarcinMoskala/KotlinAndroidViewBindings.svg)](https://jitpack.io/#MarcinMoskala/KotlinAndroidViewBindings)
 
@@ -67,7 +67,7 @@ This makes presenters fully unit-testable while keeping Activities short and sim
 
 ## Other libraries
 
-If you like it, remamber to leave the star and check out my other libraries:
+If you like it, remember to leave the star and check out my other libraries:
  * [ActivityStarter](https://github.com/MarcinMoskala/ActivityStarter/blob/master/README.md) - Simple Android Library, that provides easy way to start and save state of Activities, Fragments, Services and Receivers with arguments.
  * [PreferenceHolder](https://github.com/MarcinMoskala/PreferenceHolder) - Library for simple SharedPreference management in Kotlin
  * [ArcSeekBar](https://github.com/MarcinMoskala/ArcSeekBar) - Good looking curved Android SeekBar
