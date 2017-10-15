@@ -3,6 +3,7 @@
 Bindings for properties with Kotlin types (Boolean, String) to layout traits (visibility, text).
 
 [![](https://jitpack.io/v/MarcinMoskala/KotlinAndroidViewBindings.svg)](https://jitpack.io/#MarcinMoskala/KotlinAndroidViewBindings)
+[![Analytics](https://ga-beacon.appspot.com/UA-92159206-7/main-page?pixel)](https://github.com/MarcinMoskala/MarvelGallery)
 
 Library allows to bind properties of basic types (String, Int, functional) to view element properties. Example:
 
