@@ -17,6 +17,9 @@ fun Activity.bindToEditText(@IdRes editTextId: Int): ReadWriteProperty<Any?, Str
 fun Fragment.bindToEditText(@IdRes viewId: Int): ReadWriteProperty<Any?, String>
         = bindToEditText { view.findViewById(viewId) as EditText }
 
+fun android.support.v4.app.Fragment.bindToEditText(@IdRes viewId: Int): ReadWriteProperty<Any?, String>
+        = bindToEditText { view!!.findViewById(viewId) as EditText }
+
 fun FrameLayout.bindToEditText(@IdRes viewId: Int): ReadWriteProperty<Any?, String>
         = bindToEditText { findViewById(viewId) as EditText }
 

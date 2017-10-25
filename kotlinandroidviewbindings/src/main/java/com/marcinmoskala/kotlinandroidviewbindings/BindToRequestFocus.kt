@@ -17,13 +17,16 @@ fun Activity.bindToRequestFocus(@IdRes editViewId: Int): ReadOnlyProperty<Any?, 
 fun Fragment.bindToRequestFocus(@IdRes editViewId: Int): ReadOnlyProperty<Any?, () -> Unit>
         = bindToRequestFocus { view.findViewById(editViewId) }
 
+fun android.support.v4.app.Fragment.bindToRequestFocus(@IdRes editViewId: Int): ReadOnlyProperty<Any?, () -> Unit>
+        = bindToRequestFocus { view!!.findViewById(editViewId) }
+
 fun FrameLayout.bindToRequestFocus(@IdRes editViewId: Int): ReadOnlyProperty<Any?, () -> Unit>
         = bindToRequestFocus { findViewById(editViewId) }
 
 fun View.bindToRequestFocus(): ReadOnlyProperty<Any?, () -> Unit>
         = bindToRequestFocus { this }
 
-fun bindToRequestFocus(viewProvider: () -> View): ReadOnlyProperty<Any?, () -> Unit>
+private fun bindToRequestFocus(viewProvider: () -> View): ReadOnlyProperty<Any?, () -> Unit>
         = RequestFocusBinding(lazy(viewProvider))
 
 private class RequestFocusBinding(viewProvider: Lazy<View>) : ReadOnlyProperty<Any?, () -> Unit> {

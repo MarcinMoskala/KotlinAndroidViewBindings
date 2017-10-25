@@ -17,6 +17,9 @@ fun Activity.bindToErrorId(@IdRes editTextId: Int): ReadWriteProperty<Any?, Int?
 fun Fragment.bindToErrorId(@IdRes viewId: Int): ReadWriteProperty<Any?, Int?>
         = bindToErrorId { view.findViewById(viewId) as EditText }
 
+fun android.support.v4.app.Fragment.bindToErrorId(@IdRes viewId: Int): ReadWriteProperty<Any?, Int?>
+        = bindToErrorId { view!!.findViewById(viewId) as EditText }
+
 fun FrameLayout.bindToErrorId(@IdRes viewId: Int): ReadWriteProperty<Any?, Int?>
         = bindToErrorId { findViewById(viewId) as EditText }
 

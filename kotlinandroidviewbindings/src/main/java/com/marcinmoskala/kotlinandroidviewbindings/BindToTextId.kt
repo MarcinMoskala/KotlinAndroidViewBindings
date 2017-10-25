@@ -17,6 +17,9 @@ fun Activity.bindToTextId(@IdRes textViewId: Int): ReadWriteProperty<Any?, Int?>
 fun Fragment.bindToTextId(@IdRes textViewId: Int): ReadWriteProperty<Any?, Int?>
         = bindToTextId { view.findViewById(textViewId) as TextView }
 
+fun android.support.v4.app.Fragment.bindToTextId(@IdRes textViewId: Int): ReadWriteProperty<Any?, Int?>
+        = bindToTextId { view!!.findViewById(textViewId) as TextView }
+
 fun FrameLayout.bindToTextId(@IdRes textViewId: Int): ReadWriteProperty<Any?, Int?>
         = bindToTextId { findViewById(textViewId) as TextView }
 

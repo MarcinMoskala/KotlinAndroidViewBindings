@@ -17,6 +17,9 @@ fun Activity.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> 
 fun Fragment.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
         = bindToLongClick { view.findViewById(viewId) }
 
+fun android.support.v4.app.Fragment.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
+        = bindToLongClick { view!!.findViewById(viewId) }
+
 fun FrameLayout.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
         = bindToLongClick { findViewById(viewId) }
 

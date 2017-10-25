@@ -28,6 +28,15 @@ fun Fragment.bindToLoading(
         restViewHolderProvider = { view.findViewById(restViewHolderId) }
 )
 
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun android.support.v4.app.Fragment.bindToLoading(
+        @IdRes progressViewId: Int,
+        @IdRes restViewHolderId: Int
+): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+        progressViewProvider = { view!!.findViewById(progressViewId) },
+        restViewHolderProvider = { view!!.findViewById(restViewHolderId) }
+)
+
 fun FrameLayout.bindToLoading(
         @IdRes progressViewId: Int,
         @IdRes restViewHolderId: Int
