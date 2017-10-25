@@ -1,8 +1,9 @@
 # KotlinAndroidViewBindings
 
-Library providing property Kotlin bindings to Android view elements.
+Bindings for properties with Kotlin types (Boolean, String) to layout traits (visibility, text).
 
 [![](https://jitpack.io/v/MarcinMoskala/KotlinAndroidViewBindings.svg)](https://jitpack.io/#MarcinMoskala/KotlinAndroidViewBindings)
+[![Analytics](https://ga-beacon.appspot.com/UA-92159206-7/main-page?pixel)](https://github.com/MarcinMoskala/MarvelGallery)
 
 Library allows to bind properties of basic types (String, Int, functional) to view element properties. Example:
 
@@ -64,6 +65,14 @@ class LoginPresenter(val view: LoginView) {
 ```
 
 This makes presenters fully unit-testable while keeping Activities short and simple. Full example [here](https://github.com/MarcinMoskala/KotlinAndroidViewBindings/tree/master/sample/src/main/java/com/marcinmoskala/kotlinandroidviewbindings/login). Library usage in wider context [here](https://github.com/MarcinMoskala/SimpleKotlinMvpBoilerplate).
+
+## Other libraries
+
+If you like it, remember to leave the star and check out my other libraries:
+ * [ActivityStarter](https://github.com/MarcinMoskala/ActivityStarter/blob/master/README.md) - Simple Android Library, that provides easy way to start and save state of Activities, Fragments, Services and Receivers with arguments.
+ * [PreferenceHolder](https://github.com/MarcinMoskala/PreferenceHolder) - Library for simple SharedPreference management in Kotlin
+ * [ArcSeekBar](https://github.com/MarcinMoskala/ArcSeekBar) - Good looking curved Android SeekBar
+ * [VideoPlayView](https://github.com/MarcinMoskala/VideoPlayView) - Custom Android view with video player, loader and placeholder image
 
 License
 -------
