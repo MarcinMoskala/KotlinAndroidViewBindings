@@ -66,6 +66,28 @@ class LoginPresenter(val view: LoginView) {
 
 This makes presenters fully unit-testable while keeping Activities short and simple. Full example [here](https://github.com/MarcinMoskala/KotlinAndroidViewBindings/tree/master/sample/src/main/java/com/marcinmoskala/kotlinandroidviewbindings/login). Library usage in wider context [here](https://github.com/MarcinMoskala/SimpleKotlinMvpBoilerplate).
 
+## Installation
+
+To add KotlinAndroidViewBindings to the project, add to `build.gradle` file:
+
+```Groovy
+dependencies {
+    compile "com.marcinmoskala.KotlinAndroidViewBindings:KotlinAndroidViewBindings:0.10"
+}
+```
+
+While library is located on JitPack, remember to add to module `build.gradle` (unless you already have it):
+
+```Groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+```
+
+## Media
+
+* [Still MVP or already MVVM?](https://medium.com/@marcinmoskala/still-mvp-or-already-mvvm-d3e2c7c44a03)
+
 ## Other libraries
 
 If you like it, remember to leave the star and check out my other libraries:
