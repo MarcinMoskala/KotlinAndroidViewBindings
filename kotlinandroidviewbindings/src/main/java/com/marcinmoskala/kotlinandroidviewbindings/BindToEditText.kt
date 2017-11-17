@@ -26,6 +26,16 @@ fun FrameLayout.bindToEditText(@IdRes viewId: Int): ReadWriteProperty<Any?, Stri
 fun EditText.bindToEditText(): ReadWriteProperty<Any?, String>
         = bindToEditText { this }
 
+fun Activity.bindToEditText(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
+        = bindToEditText { viewProvider() }
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToEditText(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
+        = bindToEditText { viewProvider() }
+
+fun android.support.v4.app.Fragment.bindToEditText(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
+        = bindToEditText { viewProvider() }
+
 private fun bindToEditText(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
         = EditTextViewTextBinding(lazy(viewProvider))
 

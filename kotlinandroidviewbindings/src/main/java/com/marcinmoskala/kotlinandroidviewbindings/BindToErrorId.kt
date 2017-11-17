@@ -23,6 +23,16 @@ fun android.support.v4.app.Fragment.bindToErrorId(@IdRes viewId: Int): ReadWrite
 fun FrameLayout.bindToErrorId(@IdRes viewId: Int): ReadWriteProperty<Any?, Int?>
         = bindToErrorId { findViewById(viewId) as EditText }
 
+fun Activity.bindToErrorId(viewProvider: () -> EditText): ReadWriteProperty<Any?, Int?>
+        = bindToErrorId { viewProvider() }
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToErrorId(viewProvider: () -> EditText): ReadWriteProperty<Any?, Int?>
+        = bindToErrorId { viewProvider() }
+
+fun android.support.v4.app.Fragment.bindToErrorId(viewProvider: () -> EditText): ReadWriteProperty<Any?, Int?>
+        = bindToErrorId { viewProvider() }
+
 fun EditText.bindToErrorId(): ReadWriteProperty<Any?, Int?>
         = bindToErrorId { this }
 

@@ -45,6 +45,32 @@ fun FrameLayout.bindToLoading(
         restViewHolderProvider = { findViewById(restViewHolderId) }
 )
 
+fun Activity.bindToLoading(
+        progressViewProvider: () -> View,
+        restViewProvider: () -> View
+): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+        progressViewProvider = { progressViewProvider() },
+        restViewHolderProvider = { restViewProvider() }
+)
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToLoading(
+        progressViewProvider: () -> View,
+        restViewProvider: () -> View
+): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+        progressViewProvider = { progressViewProvider() },
+        restViewHolderProvider = { restViewProvider() }
+)
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun android.support.v4.app.Fragment.bindToLoading(
+        progressViewProvider: () -> View,
+        restViewProvider: () -> View
+): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+        progressViewProvider = { progressViewProvider() },
+        restViewHolderProvider = { restViewProvider() }
+)
+
 fun Pair<View, View>.bindToLoading(): ReadWriteProperty<Any?, Boolean> = bindToLoading(
         progressViewProvider = { first },
         restViewHolderProvider = { second }
@@ -71,7 +97,7 @@ private class LoadingBinding(
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Boolean) {
-        progressView.visibility = if(value) View.VISIBLE else View.GONE
-        restOfView?.visibility = if(value) View.GONE else View.VISIBLE
+        progressView.visibility = if (value) View.VISIBLE else View.GONE
+        restOfView?.visibility = if (value) View.GONE else View.VISIBLE
     }
 }

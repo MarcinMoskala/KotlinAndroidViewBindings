@@ -24,6 +24,16 @@ fun android.support.v4.app.Fragment.bindToEditorActions(@IdRes viewId: Int, pred
 fun FrameLayout.bindToEditorActions(@IdRes viewId: Int, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
         = bindToEditorActions(predicate) { findViewById(viewId) as EditText }
 
+fun Activity.bindToEditorActions(viewProvider: ()->EditText, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
+        = bindToEditorActions(predicate, { viewProvider() })
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToEditorActions(viewProvider: ()->EditText, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
+        = bindToEditorActions(predicate) { viewProvider() }
+
+fun android.support.v4.app.Fragment.bindToEditorActions(viewProvider: ()->EditText, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
+        = bindToEditorActions(predicate) { viewProvider() }
+
 fun EditText.bindToEditorActions(predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
         = bindToEditorActions(predicate) { this }
 

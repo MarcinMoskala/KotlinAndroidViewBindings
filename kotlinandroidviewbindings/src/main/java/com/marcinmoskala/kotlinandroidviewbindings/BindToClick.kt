@@ -5,7 +5,6 @@ import android.app.Fragment
 import android.os.Build
 import android.support.annotation.IdRes
 import android.support.annotation.RequiresApi
-import android.support.v4.widget.SwipeRefreshLayout
 import android.view.View
 import android.widget.FrameLayout
 import kotlin.properties.ReadWriteProperty
@@ -23,6 +22,16 @@ fun android.support.v4.app.Fragment.bindToClick(@IdRes viewId: Int): ReadWritePr
 
 fun FrameLayout.bindToClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
         = bindToClick { findViewById(viewId) }
+
+fun Activity.bindToClick(viewProvider: ()->View): ReadWriteProperty<Any?, () -> Unit>
+        = bindToClick { viewProvider() }
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToClick(viewProvider: ()->View): ReadWriteProperty<Any?, () -> Unit>
+        = bindToClick { viewProvider() }
+
+fun android.support.v4.app.Fragment.bindToClick(viewProvider: ()->View): ReadWriteProperty<Any?, () -> Unit>
+        = bindToClick { viewProvider() }
 
 fun View.bindToClick(): ReadWriteProperty<Any?, () -> Unit>
         = bindToClick { this }
@@ -45,7 +54,7 @@ private class OnClickBinding(viewProvider: Lazy<View>) : ReadWriteProperty<Any?,
     }
 
     fun setUpListener() {
-        if(function == null) view.setOnClickListener { function?.invoke() }
+        if (function == null) view.setOnClickListener { function?.invoke() }
     }
 
     companion object {

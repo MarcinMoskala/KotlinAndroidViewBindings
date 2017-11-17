@@ -23,6 +23,16 @@ fun android.support.v4.app.Fragment.bindToVisibility(@IdRes editTextId: Int): Re
 fun FrameLayout.bindToVisibility(@IdRes editTextId: Int): ReadWriteProperty<Any?, Boolean>
         = bindToVisibility { findViewById(editTextId) }
 
+fun Activity.bindToVisibility(viewProvider: () -> View): ReadWriteProperty<Any?, Boolean>
+        = bindToVisibility { viewProvider() }
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToVisibility(viewProvider: () -> View): ReadWriteProperty<Any?, Boolean>
+        = bindToVisibility { viewProvider() }
+
+fun android.support.v4.app.Fragment.bindToVisibility(viewProvider: () -> View): ReadWriteProperty<Any?, Boolean>
+        = bindToVisibility { viewProvider() }
+
 fun View.bindToVisibility(): ReadWriteProperty<Any?, Boolean>
         = bindToVisibility { this }
 

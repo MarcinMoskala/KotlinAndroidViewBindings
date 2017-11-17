@@ -23,6 +23,16 @@ fun android.support.v4.app.Fragment.bindToSwipeRefresh(@IdRes swipeRefreshLayout
 fun FrameLayout.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadWriteProperty<Any?, Boolean>
         = bindToSwipeRefresh { findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
 
+fun Activity.bindToSwipeRefresh(swipeRefreshLayoutProvider: ()->SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
+        = bindToSwipeRefresh { swipeRefreshLayoutProvider() }
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToSwipeRefresh(viewProvider: ()->SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
+        = bindToSwipeRefresh { viewProvider() }
+
+fun android.support.v4.app.Fragment.bindToSwipeRefresh(viewProvider: ()->SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
+        = bindToSwipeRefresh { viewProvider() }
+
 fun SwipeRefreshLayout.bindToSwipeRefresh(): ReadWriteProperty<Any?, Boolean>
         = bindToSwipeRefresh { this }
 

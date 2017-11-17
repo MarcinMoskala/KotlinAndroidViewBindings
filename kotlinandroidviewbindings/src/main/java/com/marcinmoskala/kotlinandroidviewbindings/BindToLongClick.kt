@@ -23,6 +23,16 @@ fun android.support.v4.app.Fragment.bindToLongClick(@IdRes viewId: Int): ReadWri
 fun FrameLayout.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
         = bindToLongClick { findViewById(viewId) }
 
+fun Activity.bindToLongClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
+        = bindToLongClick { viewProvider() }
+
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+fun Fragment.bindToLongClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
+        = bindToLongClick { viewProvider() }
+
+fun android.support.v4.app.Fragment.bindToLongClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
+        = bindToLongClick { viewProvider() }
+
 fun View.bindToLongClick(): ReadWriteProperty<Any?, () -> Unit>
         = bindToLongClick { this }
 
