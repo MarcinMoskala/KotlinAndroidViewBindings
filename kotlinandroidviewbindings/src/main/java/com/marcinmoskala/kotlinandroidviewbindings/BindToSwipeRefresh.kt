@@ -11,32 +11,32 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadWriteProperty<Any?, Boolean>
-        = bindToSwipeRefresh { findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
+        = bindToSwipeRefreshP { findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadWriteProperty<Any?, Boolean>
-        = bindToSwipeRefresh { view.findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
+        = bindToSwipeRefreshP { view.findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
 
 fun android.support.v4.app.Fragment.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadWriteProperty<Any?, Boolean>
-        = bindToSwipeRefresh { view!!.findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
+        = bindToSwipeRefreshP { view!!.findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
 
 fun FrameLayout.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadWriteProperty<Any?, Boolean>
-        = bindToSwipeRefresh { findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
+        = bindToSwipeRefreshP { findViewById(swipeRefreshLayoutId) as SwipeRefreshLayout }
 
-fun Activity.bindToSwipeRefresh(swipeRefreshLayoutProvider: ()->SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
-        = bindToSwipeRefresh { swipeRefreshLayoutProvider() }
+fun Activity.bindToSwipeRefresh(swipeRefreshLayoutProvider: () -> SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
+        = bindToSwipeRefreshP { swipeRefreshLayoutProvider() }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
-fun Fragment.bindToSwipeRefresh(viewProvider: ()->SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
-        = bindToSwipeRefresh { viewProvider() }
+fun Fragment.bindToSwipeRefresh(viewProvider: () -> SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
+        = bindToSwipeRefreshP { viewProvider() }
 
-fun android.support.v4.app.Fragment.bindToSwipeRefresh(viewProvider: ()->SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
-        = bindToSwipeRefresh { viewProvider() }
+fun android.support.v4.app.Fragment.bindToSwipeRefresh(viewProvider: () -> SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
+        = bindToSwipeRefreshP { viewProvider() }
 
 fun SwipeRefreshLayout.bindToSwipeRefresh(): ReadWriteProperty<Any?, Boolean>
-        = bindToSwipeRefresh { this }
+        = bindToSwipeRefreshP { this }
 
-private fun bindToSwipeRefresh(viewProvider: () -> SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
+private fun bindToSwipeRefreshP(viewProvider: () -> SwipeRefreshLayout): ReadWriteProperty<Any?, Boolean>
         = SwipeRefreshBinding(lazy(viewProvider))
 
 private class SwipeRefreshBinding(viewProvider: Lazy<SwipeRefreshLayout>) : ReadWriteProperty<Any?, Boolean> {

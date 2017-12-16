@@ -11,32 +11,32 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToErrorId(@IdRes editTextId: Int): ReadWriteProperty<Any?, Int?>
-        = bindToErrorId { findViewById(editTextId) as EditText }
+        = bindToErrorIdP { findViewById(editTextId) as EditText }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToErrorId(@IdRes viewId: Int): ReadWriteProperty<Any?, Int?>
-        = bindToErrorId { view.findViewById(viewId) as EditText }
+        = bindToErrorIdP { view.findViewById(viewId) as EditText }
 
 fun android.support.v4.app.Fragment.bindToErrorId(@IdRes viewId: Int): ReadWriteProperty<Any?, Int?>
-        = bindToErrorId { view!!.findViewById(viewId) as EditText }
+        = bindToErrorIdP { view!!.findViewById(viewId) as EditText }
 
 fun FrameLayout.bindToErrorId(@IdRes viewId: Int): ReadWriteProperty<Any?, Int?>
-        = bindToErrorId { findViewById(viewId) as EditText }
+        = bindToErrorIdP { findViewById(viewId) as EditText }
 
 fun Activity.bindToErrorId(viewProvider: () -> EditText): ReadWriteProperty<Any?, Int?>
-        = bindToErrorId { viewProvider() }
+        = bindToErrorIdP { viewProvider() }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToErrorId(viewProvider: () -> EditText): ReadWriteProperty<Any?, Int?>
-        = bindToErrorId { viewProvider() }
+        = bindToErrorIdP { viewProvider() }
 
 fun android.support.v4.app.Fragment.bindToErrorId(viewProvider: () -> EditText): ReadWriteProperty<Any?, Int?>
-        = bindToErrorId { viewProvider() }
+        = bindToErrorIdP { viewProvider() }
 
 fun EditText.bindToErrorId(): ReadWriteProperty<Any?, Int?>
-        = bindToErrorId { this }
+        = bindToErrorIdP { this }
 
-private fun bindToErrorId(viewProvider: () -> EditText): ReadWriteProperty<Any?, Int?>
+private fun bindToErrorIdP(viewProvider: () -> EditText): ReadWriteProperty<Any?, Int?>
         = EditTextViewErrorIdBinding(lazy(viewProvider))
 
 private class EditTextViewErrorIdBinding(lazyViewProvider: Lazy<EditText>) : ReadWriteProperty<Any?, Int?> {

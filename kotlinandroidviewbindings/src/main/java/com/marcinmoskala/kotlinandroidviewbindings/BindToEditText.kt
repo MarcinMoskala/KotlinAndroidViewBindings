@@ -11,32 +11,32 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToEditText(@IdRes editTextId: Int): ReadWriteProperty<Any?, String>
-        = bindToEditText { findViewById(editTextId) as EditText }
+        = bindToEditTextP { findViewById(editTextId) as EditText }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToEditText(@IdRes viewId: Int): ReadWriteProperty<Any?, String>
-        = bindToEditText { view.findViewById(viewId) as EditText }
+        = bindToEditTextP { view.findViewById(viewId) as EditText }
 
 fun android.support.v4.app.Fragment.bindToEditText(@IdRes viewId: Int): ReadWriteProperty<Any?, String>
-        = bindToEditText { view!!.findViewById(viewId) as EditText }
+        = bindToEditTextP { view!!.findViewById(viewId) as EditText }
 
 fun FrameLayout.bindToEditText(@IdRes viewId: Int): ReadWriteProperty<Any?, String>
-        = bindToEditText { findViewById(viewId) as EditText }
+        = bindToEditTextP { findViewById(viewId) as EditText }
 
 fun EditText.bindToEditText(): ReadWriteProperty<Any?, String>
-        = bindToEditText { this }
+        = bindToEditTextP { this }
 
 fun Activity.bindToEditText(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
-        = bindToEditText { viewProvider() }
+        = bindToEditTextP { viewProvider() }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToEditText(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
-        = bindToEditText { viewProvider() }
+        = bindToEditTextP { viewProvider() }
 
 fun android.support.v4.app.Fragment.bindToEditText(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
-        = bindToEditText { viewProvider() }
+        = bindToEditTextP { viewProvider() }
 
-private fun bindToEditText(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
+private fun bindToEditTextP(viewProvider: () -> EditText): ReadWriteProperty<Any?, String>
         = EditTextViewTextBinding(lazy(viewProvider))
 
 private class EditTextViewTextBinding(lazyViewProvider: Lazy<EditText>) : ReadWriteProperty<Any?, String> {

@@ -14,7 +14,7 @@ import kotlin.reflect.KProperty
 fun Activity.bindToLoading(
         @IdRes progressViewId: Int,
         @IdRes restViewHolderId: Int
-): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+): ReadWriteProperty<Any?, Boolean> = bindToLoadingP(
         progressViewProvider = { findViewById(progressViewId) },
         restViewHolderProvider = { findViewById(restViewHolderId) }
 )
@@ -23,7 +23,7 @@ fun Activity.bindToLoading(
 fun Fragment.bindToLoading(
         @IdRes progressViewId: Int,
         @IdRes restViewHolderId: Int
-): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+): ReadWriteProperty<Any?, Boolean> = bindToLoadingP(
         progressViewProvider = { view.findViewById(progressViewId) },
         restViewHolderProvider = { view.findViewById(restViewHolderId) }
 )
@@ -32,7 +32,7 @@ fun Fragment.bindToLoading(
 fun android.support.v4.app.Fragment.bindToLoading(
         @IdRes progressViewId: Int,
         @IdRes restViewHolderId: Int
-): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+): ReadWriteProperty<Any?, Boolean> = bindToLoadingP(
         progressViewProvider = { view!!.findViewById(progressViewId) },
         restViewHolderProvider = { view!!.findViewById(restViewHolderId) }
 )
@@ -40,7 +40,7 @@ fun android.support.v4.app.Fragment.bindToLoading(
 fun FrameLayout.bindToLoading(
         @IdRes progressViewId: Int,
         @IdRes restViewHolderId: Int
-): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+): ReadWriteProperty<Any?, Boolean> = bindToLoadingP(
         progressViewProvider = { findViewById(progressViewId) },
         restViewHolderProvider = { findViewById(restViewHolderId) }
 )
@@ -48,7 +48,7 @@ fun FrameLayout.bindToLoading(
 fun Activity.bindToLoading(
         progressViewProvider: () -> View,
         restViewProvider: () -> View
-): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+): ReadWriteProperty<Any?, Boolean> = bindToLoadingP(
         progressViewProvider = { progressViewProvider() },
         restViewHolderProvider = { restViewProvider() }
 )
@@ -57,7 +57,7 @@ fun Activity.bindToLoading(
 fun Fragment.bindToLoading(
         progressViewProvider: () -> View,
         restViewProvider: () -> View
-): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+): ReadWriteProperty<Any?, Boolean> = bindToLoadingP(
         progressViewProvider = { progressViewProvider() },
         restViewHolderProvider = { restViewProvider() }
 )
@@ -66,17 +66,17 @@ fun Fragment.bindToLoading(
 fun android.support.v4.app.Fragment.bindToLoading(
         progressViewProvider: () -> View,
         restViewProvider: () -> View
-): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+): ReadWriteProperty<Any?, Boolean> = bindToLoadingP(
         progressViewProvider = { progressViewProvider() },
         restViewHolderProvider = { restViewProvider() }
 )
 
-fun Pair<View, View>.bindToLoading(): ReadWriteProperty<Any?, Boolean> = bindToLoading(
+fun Pair<View, View>.bindToLoading(): ReadWriteProperty<Any?, Boolean> = bindToLoadingP(
         progressViewProvider = { first },
         restViewHolderProvider = { second }
 )
 
-private fun bindToLoading(
+private fun bindToLoadingP(
         progressViewProvider: () -> View,
         restViewHolderProvider: () -> View
 ): ReadWriteProperty<Any?, Boolean> = LoadingBinding(

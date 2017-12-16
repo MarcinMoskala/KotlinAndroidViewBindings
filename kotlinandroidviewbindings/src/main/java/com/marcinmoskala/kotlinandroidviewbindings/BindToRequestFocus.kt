@@ -11,32 +11,32 @@ import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToRequestFocus(@IdRes editViewId: Int): ReadOnlyProperty<Any?, () -> Unit>
-        = bindToRequestFocus { findViewById(editViewId) }
+        = bindToRequestFocusP { findViewById(editViewId) }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToRequestFocus(@IdRes editViewId: Int): ReadOnlyProperty<Any?, () -> Unit>
-        = bindToRequestFocus { view.findViewById(editViewId) }
+        = bindToRequestFocusP { view.findViewById(editViewId) }
 
 fun android.support.v4.app.Fragment.bindToRequestFocus(@IdRes editViewId: Int): ReadOnlyProperty<Any?, () -> Unit>
-        = bindToRequestFocus { view!!.findViewById(editViewId) }
+        = bindToRequestFocusP { view!!.findViewById(editViewId) }
 
 fun FrameLayout.bindToRequestFocus(@IdRes editViewId: Int): ReadOnlyProperty<Any?, () -> Unit>
-        = bindToRequestFocus { findViewById(editViewId) }
+        = bindToRequestFocusP { findViewById(editViewId) }
 
 fun Activity.bindToRequestFocus(viewProvider: () -> View): ReadOnlyProperty<Any?, () -> Unit>
-        = bindToRequestFocus { viewProvider() }
+        = bindToRequestFocusP { viewProvider() }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToRequestFocus(viewProvider: () -> View): ReadOnlyProperty<Any?, () -> Unit>
-        = bindToRequestFocus { viewProvider() }
+        = bindToRequestFocusP { viewProvider() }
 
 fun android.support.v4.app.Fragment.bindToRequestFocus(viewProvider: () -> View): ReadOnlyProperty<Any?, () -> Unit>
-        = bindToRequestFocus { viewProvider() }
+        = bindToRequestFocusP { viewProvider() }
 
 fun View.bindToRequestFocus(): ReadOnlyProperty<Any?, () -> Unit>
-        = bindToRequestFocus { this }
+        = bindToRequestFocusP { this }
 
-private fun bindToRequestFocus(viewProvider: () -> View): ReadOnlyProperty<Any?, () -> Unit>
+private fun bindToRequestFocusP(viewProvider: () -> View): ReadOnlyProperty<Any?, () -> Unit>
         = RequestFocusBinding(lazy(viewProvider))
 
 private class RequestFocusBinding(viewProvider: Lazy<View>) : ReadOnlyProperty<Any?, () -> Unit> {

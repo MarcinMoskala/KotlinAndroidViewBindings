@@ -12,32 +12,32 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToEditorActions(@IdRes editTextId: Int, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
-        = bindToEditorActions(predicate, { findViewById(editTextId) as EditText })
+        = bindToEditorActionsP(predicate, { findViewById(editTextId) as EditText })
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToEditorActions(@IdRes viewId: Int, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
-        = bindToEditorActions(predicate) { view.findViewById(viewId) as EditText }
+        = bindToEditorActionsP(predicate) { view.findViewById(viewId) as EditText }
 
 fun android.support.v4.app.Fragment.bindToEditorActions(@IdRes viewId: Int, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
-        = bindToEditorActions(predicate) { view!!.findViewById(viewId) as EditText }
+        = bindToEditorActionsP(predicate) { view!!.findViewById(viewId) as EditText }
 
 fun FrameLayout.bindToEditorActions(@IdRes viewId: Int, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
-        = bindToEditorActions(predicate) { findViewById(viewId) as EditText }
+        = bindToEditorActionsP(predicate) { findViewById(viewId) as EditText }
 
-fun Activity.bindToEditorActions(viewProvider: ()->EditText, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
-        = bindToEditorActions(predicate, { viewProvider() })
+fun Activity.bindToEditorActions(viewProvider: () -> EditText, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
+        = bindToEditorActionsP(predicate, { viewProvider() })
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
-fun Fragment.bindToEditorActions(viewProvider: ()->EditText, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
-        = bindToEditorActions(predicate) { viewProvider() }
+fun Fragment.bindToEditorActions(viewProvider: () -> EditText, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
+        = bindToEditorActionsP(predicate) { viewProvider() }
 
-fun android.support.v4.app.Fragment.bindToEditorActions(viewProvider: ()->EditText, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
-        = bindToEditorActions(predicate) { viewProvider() }
+fun android.support.v4.app.Fragment.bindToEditorActions(viewProvider: () -> EditText, predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
+        = bindToEditorActionsP(predicate) { viewProvider() }
 
 fun EditText.bindToEditorActions(predicate: (Int?, Int?) -> Boolean): ReadWriteProperty<Any?, () -> Unit>
-        = bindToEditorActions(predicate) { this }
+        = bindToEditorActionsP(predicate) { this }
 
-private fun bindToEditorActions(predicate: (Int?, Int?) -> Boolean, viewProvider: () -> EditText): ReadWriteProperty<Any?, () -> Unit>
+private fun bindToEditorActionsP(predicate: (Int?, Int?) -> Boolean, viewProvider: () -> EditText): ReadWriteProperty<Any?, () -> Unit>
         = OnEditorActionBinding(predicate, lazy(viewProvider))
 
 private class OnEditorActionBinding(

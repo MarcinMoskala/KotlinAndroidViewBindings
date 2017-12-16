@@ -11,32 +11,32 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToVisibility(@IdRes editTextId: Int): ReadWriteProperty<Any?, Boolean>
-        = bindToVisibility { findViewById(editTextId) }
+        = bindToVisibilityP { findViewById(editTextId) }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToVisibility(@IdRes editTextId: Int): ReadWriteProperty<Any?, Boolean>
-        = bindToVisibility { view.findViewById(editTextId) }
+        = bindToVisibilityP { view.findViewById(editTextId) }
 
 fun android.support.v4.app.Fragment.bindToVisibility(@IdRes editTextId: Int): ReadWriteProperty<Any?, Boolean>
-        = bindToVisibility { view!!.findViewById(editTextId) }
+        = bindToVisibilityP { view!!.findViewById(editTextId) }
 
 fun FrameLayout.bindToVisibility(@IdRes editTextId: Int): ReadWriteProperty<Any?, Boolean>
-        = bindToVisibility { findViewById(editTextId) }
+        = bindToVisibilityP { findViewById(editTextId) }
 
 fun Activity.bindToVisibility(viewProvider: () -> View): ReadWriteProperty<Any?, Boolean>
-        = bindToVisibility { viewProvider() }
+        = bindToVisibilityP { viewProvider() }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToVisibility(viewProvider: () -> View): ReadWriteProperty<Any?, Boolean>
-        = bindToVisibility { viewProvider() }
+        = bindToVisibilityP { viewProvider() }
 
 fun android.support.v4.app.Fragment.bindToVisibility(viewProvider: () -> View): ReadWriteProperty<Any?, Boolean>
-        = bindToVisibility { viewProvider() }
+        = bindToVisibilityP { viewProvider() }
 
 fun View.bindToVisibility(): ReadWriteProperty<Any?, Boolean>
-        = bindToVisibility { this }
+        = bindToVisibilityP { this }
 
-private fun bindToVisibility(viewProvider: () -> View): ReadWriteProperty<Any?, Boolean>
+private fun bindToVisibilityP(viewProvider: () -> View): ReadWriteProperty<Any?, Boolean>
         = ViewVisibilityBinding(lazy(viewProvider))
 
 private class ViewVisibilityBinding(viewProvider: Lazy<View>) : ReadWriteProperty<Any?, Boolean> {

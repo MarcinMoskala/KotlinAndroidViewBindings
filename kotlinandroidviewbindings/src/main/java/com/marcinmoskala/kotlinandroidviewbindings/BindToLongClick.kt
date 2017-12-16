@@ -11,32 +11,32 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
-        = bindToLongClick { findViewById(viewId) }
+        = bindToLongClickP { findViewById(viewId) }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
-        = bindToLongClick { view.findViewById(viewId) }
+        = bindToLongClickP { view.findViewById(viewId) }
 
 fun android.support.v4.app.Fragment.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
-        = bindToLongClick { view!!.findViewById(viewId) }
+        = bindToLongClickP { view!!.findViewById(viewId) }
 
 fun FrameLayout.bindToLongClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
-        = bindToLongClick { findViewById(viewId) }
+        = bindToLongClickP { findViewById(viewId) }
 
 fun Activity.bindToLongClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
-        = bindToLongClick { viewProvider() }
+        = bindToLongClickP { viewProvider() }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToLongClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
-        = bindToLongClick { viewProvider() }
+        = bindToLongClickP { viewProvider() }
 
 fun android.support.v4.app.Fragment.bindToLongClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
-        = bindToLongClick { viewProvider() }
+        = bindToLongClickP { viewProvider() }
 
 fun View.bindToLongClick(): ReadWriteProperty<Any?, () -> Unit>
-        = bindToLongClick { this }
+        = bindToLongClickP { this }
 
-private fun bindToLongClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
+private fun bindToLongClickP(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
         = OnLongClickBinding(lazy(viewProvider))
 
 private class OnLongClickBinding(viewProvider: Lazy<View>) : ReadWriteProperty<Any?, () -> Unit> {

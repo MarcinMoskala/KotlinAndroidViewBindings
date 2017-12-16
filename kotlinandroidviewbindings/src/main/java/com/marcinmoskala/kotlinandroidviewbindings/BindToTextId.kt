@@ -11,32 +11,32 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToTextId(@IdRes textViewId: Int): ReadWriteProperty<Any?, Int?>
-        = bindToTextId { findViewById(textViewId) as TextView }
+        = bindToTextIdP { findViewById(textViewId) as TextView }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToTextId(@IdRes textViewId: Int): ReadWriteProperty<Any?, Int?>
-        = bindToTextId { view.findViewById(textViewId) as TextView }
+        = bindToTextIdP { view.findViewById(textViewId) as TextView }
 
 fun android.support.v4.app.Fragment.bindToTextId(@IdRes textViewId: Int): ReadWriteProperty<Any?, Int?>
-        = bindToTextId { view!!.findViewById(textViewId) as TextView }
+        = bindToTextIdP { view!!.findViewById(textViewId) as TextView }
 
 fun FrameLayout.bindToTextId(@IdRes textViewId: Int): ReadWriteProperty<Any?, Int?>
-        = bindToTextId { findViewById(textViewId) as TextView }
+        = bindToTextIdP { findViewById(textViewId) as TextView }
 
 fun Activity.bindToTextId(viewProvider: () -> TextView): ReadWriteProperty<Any?, Int?>
-        = bindToTextId { viewProvider() }
+        = bindToTextIdP { viewProvider() }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToTextId(viewProvider: () -> TextView): ReadWriteProperty<Any?, Int?>
-        = bindToTextId { viewProvider() }
+        = bindToTextIdP { viewProvider() }
 
 fun android.support.v4.app.Fragment.bindToTextId(viewProvider: () -> TextView): ReadWriteProperty<Any?, Int?>
-        = bindToTextId { viewProvider() }
+        = bindToTextIdP { viewProvider() }
 
 fun TextView.bindToTextId(): ReadWriteProperty<Any?, Int?>
-        = bindToTextId { this }
+        = bindToTextIdP { this }
 
-private fun bindToTextId(viewProvider: () -> TextView): ReadWriteProperty<Any?, Int?>
+private fun bindToTextIdP(viewProvider: () -> TextView): ReadWriteProperty<Any?, Int?>
         = TextIdBinding(lazy(viewProvider))
 
 private class TextIdBinding(lazyViewProvider: Lazy<TextView>) : ReadWriteProperty<Any?, Int?> {

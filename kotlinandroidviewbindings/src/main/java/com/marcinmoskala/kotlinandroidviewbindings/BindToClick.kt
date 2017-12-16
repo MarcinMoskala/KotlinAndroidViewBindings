@@ -11,32 +11,32 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
-        = bindToClick { findViewById(viewId) }
+        = bindToClickP { findViewById(viewId) }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
-        = bindToClick { view.findViewById(viewId) }
+        = bindToClickP { view.findViewById(viewId) }
 
 fun android.support.v4.app.Fragment.bindToClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
-        = bindToClick { view!!.findViewById(viewId) }
+        = bindToClickP { view!!.findViewById(viewId) }
 
 fun FrameLayout.bindToClick(@IdRes viewId: Int): ReadWriteProperty<Any?, () -> Unit>
-        = bindToClick { findViewById(viewId) }
+        = bindToClickP { findViewById(viewId) }
 
 fun Activity.bindToClick(viewProvider: ()->View): ReadWriteProperty<Any?, () -> Unit>
-        = bindToClick { viewProvider() }
+        = bindToClickP { viewProvider() }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToClick(viewProvider: ()->View): ReadWriteProperty<Any?, () -> Unit>
-        = bindToClick { viewProvider() }
+        = bindToClickP { viewProvider() }
 
 fun android.support.v4.app.Fragment.bindToClick(viewProvider: ()->View): ReadWriteProperty<Any?, () -> Unit>
-        = bindToClick { viewProvider() }
+        = bindToClickP { viewProvider() }
 
 fun View.bindToClick(): ReadWriteProperty<Any?, () -> Unit>
-        = bindToClick { this }
+        = bindToClickP { this }
 
-private fun bindToClick(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
+private fun bindToClickP(viewProvider: () -> View): ReadWriteProperty<Any?, () -> Unit>
         = OnClickBinding(lazy(viewProvider))
 
 private class OnClickBinding(viewProvider: Lazy<View>) : ReadWriteProperty<Any?, () -> Unit> {

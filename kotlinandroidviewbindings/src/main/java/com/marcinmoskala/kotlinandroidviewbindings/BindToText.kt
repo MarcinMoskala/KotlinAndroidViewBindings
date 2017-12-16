@@ -11,32 +11,32 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 fun Activity.bindToText(@IdRes textViewId: Int): ReadWriteProperty<Any?, String>
-        = bindToText { findViewById(textViewId) as TextView }
+        = bindToTextP { findViewById(textViewId) as TextView }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToText(@IdRes textViewId: Int): ReadWriteProperty<Any?, String>
-        = bindToText { view.findViewById(textViewId) as TextView }
+        = bindToTextP { view.findViewById(textViewId) as TextView }
 
 fun android.support.v4.app.Fragment.bindToText(@IdRes textViewId: Int): ReadWriteProperty<Any?, String>
-        = bindToText { view!!.findViewById(textViewId) as TextView }
+        = bindToTextP { view!!.findViewById(textViewId) as TextView }
 
 fun FrameLayout.bindToText(@IdRes textViewId: Int): ReadWriteProperty<Any?, String>
-        = bindToText { findViewById(textViewId) as TextView }
+        = bindToTextP { findViewById(textViewId) as TextView }
 
 fun Activity.bindToText(viewProvider: () -> TextView): ReadWriteProperty<Any?, String>
-        = bindToText { viewProvider() }
+        = bindToTextP { viewProvider() }
 
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 fun Fragment.bindToText(viewProvider: () -> TextView): ReadWriteProperty<Any?, String>
-        = bindToText { viewProvider() }
+        = bindToTextP { viewProvider() }
 
 fun android.support.v4.app.Fragment.bindToText(viewProvider: () -> TextView): ReadWriteProperty<Any?, String>
-        = bindToText { viewProvider() }
+        = bindToTextP { viewProvider() }
 
 fun TextView.bindToText(): ReadWriteProperty<Any?, String>
-        = bindToText { this }
+        = bindToTextP { this }
 
-private fun bindToText(viewProvider: () -> TextView): ReadWriteProperty<Any?, String>
+private fun bindToTextP(viewProvider: () -> TextView): ReadWriteProperty<Any?, String>
         = TextBinding(lazy(viewProvider))
 
 private class TextBinding(lazyViewProvider: Lazy<TextView>) : ReadWriteProperty<Any?, String> {
