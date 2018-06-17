@@ -72,7 +72,7 @@ To add KotlinAndroidViewBindings to the project, add to `build.gradle` file:
 
 ```Groovy
 dependencies {
-    compile "com.marcinmoskala.KotlinAndroidViewBindings:KotlinAndroidViewBindings:0.12"
+    implementation 'com.github.MarcinMoskala:KotlinAndroidViewBindings:0.12'
 }
 ```
 
